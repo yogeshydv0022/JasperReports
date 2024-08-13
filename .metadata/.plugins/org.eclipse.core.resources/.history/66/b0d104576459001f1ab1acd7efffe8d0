@@ -1,0 +1,142 @@
+<!-- Created with Jaspersoft Studio version 7.0.0.final using JasperReports Library version 7.0.0-b478feaa9aab4375eba71de77b4ca138ad2f62aa  -->
+<jasperReport name="employee" language="java" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MY_SQL_CONNECTION"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<dataset name="TableDataSet">
+		<property name="com.jaspersoft.studio.data.sql.tables" value="amFzcGVyLmVtcGxveWVlIEFTICw5Niw1MiwzYjU3NmQxMS1kMjMzLTQ5ZTItYTgyZC1iZTAxYWZj&#xa;Mzc2MjM7"/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MY_SQL_CONNECTION"/>
+		<query language="SQL"><![CDATA[SELECT name,
+	salary,
+	email,
+	department
+FROM jasper.employee]]></query>
+		<field name="name" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="name"/>
+			<property name="com.jaspersoft.studio.field.label" value="name"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="employee"/>
+		</field>
+		<field name="email" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="email"/>
+			<property name="com.jaspersoft.studio.field.label" value="email"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="employee"/>
+		</field>
+		<field name="department" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="department"/>
+			<property name="com.jaspersoft.studio.field.label" value="department"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="employee"/>
+		</field>
+		<field name="salary" class="java.lang.Double">
+			<property name="com.jaspersoft.studio.field.name" value="salary"/>
+			<property name="com.jaspersoft.studio.field.label" value="salary"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="employee"/>
+		</field>
+	</dataset>
+	<parameter name="Tableparm" class="net.sf.jasperreports.engine.JRResultSetDataSource"/>
+	<query language="sql"><![CDATA[]]></query>
+	<background/>
+	<title height="72">
+		<element kind="frame" mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699">
+			<element kind="staticText" x="20" y="20" width="234" height="43" forecolor="#FFFFFF" fontSize="34.0" bold="true">
+				<text><![CDATA[TITLE]]></text>
+			</element>
+			<element kind="staticText" x="395" y="43" width="180" height="20" forecolor="#FFFFFF" fontSize="14.0" bold="false" hTextAlign="Right">
+				<text><![CDATA[Add a description here]]></text>
+			</element>
+		</element>
+	</title>
+	<pageHeader height="13"/>
+	<columnHeader height="21">
+		<element kind="line" x="-20" y="20" width="595" height="1" forecolor="#666666"/>
+	</columnHeader>
+	<detail>
+		<band height="86">
+			<element kind="component" x="-10" y="-1" width="565" height="71">
+				<component kind="table">
+					<datasetRun subDataset="TableDataSet">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<column kind="single" width="141">
+						<columnHeader height="30" style="Table_CH">
+							<element kind="staticText" x="0" y="0" width="141" height="30" hTextAlign="Center" vTextAlign="Middle">
+								<text><![CDATA[name]]></text>
+							</element>
+						</columnHeader>
+						<detailCell height="30" style="Table_TD">
+							<element kind="textField" x="0" y="0" width="141" height="30" hTextAlign="Center" vTextAlign="Middle">
+								<expression><![CDATA[$F{name}]]></expression>
+							</element>
+						</detailCell>
+					</column>
+					<column kind="single" width="141">
+						<columnHeader height="30" style="Table_CH">
+							<element kind="staticText" x="0" y="0" width="141" height="30" hTextAlign="Center" vTextAlign="Middle">
+								<text><![CDATA[email]]></text>
+							</element>
+						</columnHeader>
+						<detailCell height="30" style="Table_TD">
+							<element kind="textField" x="0" y="0" width="141" height="30" hTextAlign="Center" vTextAlign="Middle">
+								<expression><![CDATA[$F{email}]]></expression>
+							</element>
+						</detailCell>
+					</column>
+					<column kind="single" width="141">
+						<columnHeader height="30" style="Table_CH">
+							<element kind="staticText" x="0" y="0" width="141" height="30" hTextAlign="Center" vTextAlign="Middle">
+								<text><![CDATA[department]]></text>
+							</element>
+						</columnHeader>
+						<detailCell height="30" style="Table_TD">
+							<element kind="textField" x="0" y="0" width="141" height="30" hTextAlign="Center" vTextAlign="Middle">
+								<expression><![CDATA[$F{department}]]></expression>
+							</element>
+						</detailCell>
+					</column>
+					<column kind="single" width="141">
+						<columnHeader height="30" style="Table_CH">
+							<element kind="staticText" x="0" y="0" width="141" height="30" hTextAlign="Center" vTextAlign="Middle">
+								<text><![CDATA[salary]]></text>
+							</element>
+						</columnHeader>
+						<detailCell height="30" style="Table_TD">
+							<element kind="textField" x="0" y="0" width="141" height="30" hTextAlign="Center" vTextAlign="Middle">
+								<expression><![CDATA[$F{salary}]]></expression>
+							</element>
+						</detailCell>
+					</column>
+				</component>
+				<property name="com.jaspersoft.studio.layout.type" value="XY_LAYOUT"/>
+			</element>
+		</band>
+	</detail>
+	<columnFooter height="10"/>
+	<pageFooter height="20">
+		<element kind="line" x="-20" y="0" width="595" height="1" forecolor="#666666"/>
+	</pageFooter>
+	<summary height="42"/>
+</jasperReport>

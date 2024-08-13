@@ -1,0 +1,56 @@
+package com.service;
+import net.sf.jasperreports.engine.*;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.connection.JDBCConnectionUtil;
+
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.HashMap;
+import java.util.Map;
+
+@Service
+public class ReportService {
+	
+	@Autowired
+	private JDBCConnectionUtil jdbcConnectionUtil;
+
+    public byte[] generateEmployeeReport(String sqlQuery) throws Exception {
+        // Load the Jasper report from the resources folder
+        InputStream reportStream = getClass().getResourceAsStream("/employeeReport.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(reportStream);
+
+        // Get a connection from the utility class
+        Connection connection = null;
+        byte[] reportBytes = null;
+
+        try {
+            connection = jdbcConnectionUtil.getConnection();
+
+            // Execute the SQL query
+            PreparedStatement statement = connection.prepareStatement(sqlQuery);
+            ResultSet resultSet = statement.executeQuery();
+
+            // Wrap the result set into JRResultSetDataSource
+            JRResultSetDataSource resultSetDataSource = new JRResultSetDataSource(resultSet);
+
+            // Parameters for the report, if needed
+            Map<String, Object> parameters = new HashMap<>();
+
+            // Fill the report with data
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, resultSetDataSource);
+
+            // Export the report to PDF format
+            reportBytes = JasperExportManager.exportReportToPdf(jasperPrint);
+        } finally {
+            // Ensure the connection is closed
+            JDBCConnectionUtil.closeConnection(connection);
+        }
+
+        return reportBytes;
+    }
+}
